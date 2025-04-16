@@ -3,12 +3,17 @@ package steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import resources.TestBuildData;
+import resources.Utils;
 
-public class StepDefinations {
+import static io.restassured.RestAssured.given;
+
+public class StepDefinations extends Utils {
+    TestBuildData data = new TestBuildData();
     @Given("update login auth payload with {string} and {string}")
-    public void update_login_auth_payload_with_and(String userName, String string2) {
+    public void update_login_auth_payload_with_and(String userName, String userPwd) {
         // Write code here that turns the phrase above into concrete actions
-
+            given().spec(requestSpecification()).body(data.logPayload(userName,userPwd));
     }
     @When("user calls {string} with {string} http request")
     public void user_calls_with_http_request(String string, String string2) {
